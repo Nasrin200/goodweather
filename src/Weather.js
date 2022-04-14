@@ -8,6 +8,7 @@ export default function Weather(props) {
   const [city, setCity] = useState(props.defaultCity);
 
   function handleResponse(response) {
+    console.log(response)
     setWeatherData({
       ready: true,
       coordinates: response.data.coord,
@@ -15,12 +16,13 @@ export default function Weather(props) {
       humidity: response.data.main.humidity,
       date: new Date(response.data.dt * 1000),
       weatherCondition: response.data.weather[0].description,
-      icon: response.data.weather[0].icon,
+      icon:`http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
       wind: response.data.wind.speed,
       city: response.data.name,
     });
+    
   }
-
+ 
     
   function handleSubmit(event) {
     event.preventDefault();
