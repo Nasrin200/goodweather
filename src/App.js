@@ -7,7 +7,7 @@ export default function App() {
         <Weather defaultCity="New York" />
 
 
-    <footer>This <a href='https://github.com/Nasrin200/weather-in-react' target="_blank" className="source">open source</a> app is made by Nasrin Alizadeh</footer>
+    <footer>This <a href="https://github.com/Nasrin200/goodweather" target="_blank" className="source" rel="noreferrer">open source</a> app is made by Nasrin Alizadeh</footer>
     </div>
     </div>
   );
