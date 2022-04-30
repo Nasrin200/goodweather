@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import WeatherInfo from "./WeatherInfo";
 import axios from "axios";
 import "./Weather.css";
+import WeatherForecast from "./WeatherForecast";
 
 export default function Weather(props) {
   const [weatherData, setWeatherData] = useState({ ready: false });
@@ -11,13 +12,14 @@ export default function Weather(props) {
     console.log(response)
     setWeatherData({
       ready: true,
+    
       coordinates: response.data.coord,
       temperature: response.data.main.temp,
       humidity: response.data.main.humidity,
       date: new Date(response.data.dt * 1000),
       weatherCondition: response.data.weather[0].description,
-      icon:`http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
-      wind: response.data.wind.speed,
+      icon:response.data.weather[0].icon,
+      wind: Math.round(response.data.wind.speed),
       city: response.data.name,
     });
     
@@ -65,10 +67,11 @@ if (weatherData.ready) {
       </div>
       </form>
       <WeatherInfo data={weatherData} />
+      <WeatherForecast  coordinate={weatherData} />
      
       </div>
   );
-}else{
+}else{ 
     search();
            
         return "loading..."
